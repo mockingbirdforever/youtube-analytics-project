@@ -2,11 +2,11 @@ import json
 import os
 from googleapiclient.discovery import build
 import isodate
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
-load_dotenv()
+# load_dotenv()
 
-api_key: str = os.getenv('YT_API_KEY')
+api_key: str = 'AIzaSyCpqZR-QVjjfhbhGkzjox3JifLVbcyDXwE'
 
 youtube = build('youtube', 'v3', developerKey=api_key)
 
@@ -53,3 +53,23 @@ class Channel:
         """Возвращает объект для работы с YouTube API"""
         return build('youtube', 'v3', developerKey=api_key)
 
+    def __str__(self):
+        return f'{self.title} ({self.url})'
+
+    def __add__(self, other):
+        return (int(self.count_subscribers) + int(other.count_subscribers))
+
+    def __sub__(self, other):
+        return (int(self.count_subscribers) - int(other.count_subscribers))
+
+    def __lt__(self, other):
+        return (int(self.count_subscribers) < int(other.count_subscribers))
+
+    def __gt__(self, other):
+        return (int(self.count_subscribers) > int(other.count_subscribers))
+
+    def __le__(self, other):
+        return (int(self.count_subscribers) <= int(other.count_subscribers))
+
+    def __ge__(self, other):
+        return (int(self.count_subscribers) >= int(other.count_subscribers))

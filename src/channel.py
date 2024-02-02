@@ -57,6 +57,12 @@ class Channel:
         return f'{self.title} ({self.url})'
 
     def __add__(self, other):
+        return int(self.count_subscribers) + int(other.count_subscribers)
+
+    def __str__(self):
+        return f'{self.title} ({self.url})'
+
+    def __add__(self, other):
         return (int(self.count_subscribers) + int(other.count_subscribers))
 
     def __sub__(self, other):
